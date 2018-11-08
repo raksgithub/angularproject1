@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12" *ngIf="!searchAllowed; else search;">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Item Name: </label>
+          <input type="text" id='name' class='form-control' #nameInput>
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="qty">Item Quantity:</label>
+          <input type="number" id='qty' class="form-control" #qtyInput>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-success" type='submit' (click)='addInShoppingList()' title='Add Item'>Add Item</button>&nbsp;
+          <button class="btn btn-primary" type='button' title='Clear List' (click)="clearShoppingList()">Clear List</button>&nbsp;
+          <button class="btn btn-secondary" type='button' title='Search Item' (click)="toggleSearch()">Search Item</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ng-template #search>
+    <div class="col-12">
+      <form>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="search">Search Item: </label>
+            <input type="text" id='search' class='form-control' #searchInput (keyup)="indexItem(searchInput.value)">
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button class="btn btn-info" (click)="toggleSearch()">Back&lt;&lt;</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>

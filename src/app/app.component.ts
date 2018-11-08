@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  
+  navigatedFeature: string = '';
+  navigateFeature(feature: string) {
+    this.navigatedFeature = feature;
+  }
 }

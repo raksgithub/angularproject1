@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-5">
+    <app-shopping-list-edit (onToggle)="onToggled($event)"></app-shopping-list-edit>
+    <hr>
+    <ul class="list-group" *ngIf="!searchingStarted; else search">
+      <a class='list-group-item'  
+      *ngFor='let ingredient of ingredients; let id = index;'
+      [ngClass]="{odd: ingredient.quantity % 2 !== 0, even: ingredient.quantity % 2 === 0}"
+      [ngStyle]="{color: ingredient.quantity % 2 === 0 ? 'white' : 'red'}">
+        {{ ingredient.name }} ({{ ingredient.quantity }}) <span><button class='btn btn-info' (click)="deleteItem(id)">X</button></span>
+      </a>
+    </ul>
+    <ng-template #search>
+      <ul class="list-group">
+        <a class='list-group-item'  
+        *ngFor='let ingredient of filteredIngredients; let id = index;'>
+          {{ ingredient.name }} ({{ ingredient.quantity }})
+        </a>
+      </ul>
+    </ng-template>
+  </div>
+</div>
