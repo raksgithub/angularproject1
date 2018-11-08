@@ -1,16 +1,32 @@
 <div class="row">
-  <div class="col-6">
+  <div class="col-12">
     <app-shopping-list-edit (onToggle)="onToggled($event)"></app-shopping-list-edit>
     <hr>
-    <strong>Shopping List:</strong>
-    <ul class="list-group" *ngIf="!searchingStarted; else search">
-      <a class='list-group-item'  
-      *ngFor='let ingredient of ingredients; let id = index;'
-      [ngClass]="{odd: ingredient.quantity % 2 !== 0, even: ingredient.quantity % 2 === 0}"
-      [ngStyle]="{color: ingredient.quantity % 2 === 0 ? 'white' : 'red'}">
-        {{ ingredient.name }} ({{ ingredient.quantity }}) <span><button class='btn btn-info' (click)="deleteItem(id)">X</button></span>
-      </a>
-    </ul>
+    <div class="row">
+      <div class="col-12">
+        <strong>Shopping List:</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <ul class="list-group" *ngIf="!searchingStarted; else search">
+          <a class='list-group-item' *ngFor='let ingredient of ingredients; let id = index;'
+              [ngClass]="{odd: ingredient.quantity % 2 !== 0, even: ingredient.quantity % 2 === 0}"
+              [ngStyle]="{color: ingredient.quantity % 2 === 0 ? 'white' : 'red'}"> 
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  {{ ingredient.name }} ({{ ingredient.quantity }})
+                </div>
+                <div class="col-6">
+                  <div class="row justify-content-end">
+                    <button class='btn btn-info' (click)="deleteItem(id)">X</button>
+                  </div>
+                </div>
+              </div>
+          </a>
+        </ul>
+      </div>
+    </div>
     <ng-template #search>
       <ul class="list-group">
         <a class='list-group-item'  
