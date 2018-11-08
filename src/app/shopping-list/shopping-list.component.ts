@@ -41,6 +41,7 @@ export class ShoppingListComponent implements OnInit{
 
   onToggled(search: boolean) {
     this.searchingStarted = search;
+    this.filteredIngredients = this.shoppingListService.getIngredients();
   }
 
 }
