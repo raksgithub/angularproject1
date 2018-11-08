@@ -36,6 +36,8 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   indexItem(queryString: string) {
-    this.searchService.searchQuery(queryString);
+    if(this.shoppingListService.getIngredients().length !== 0) {
+      this.searchService.searchQuery(queryString);
+    }
   }
 }

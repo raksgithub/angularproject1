@@ -15,8 +15,9 @@ export class SearchService {
     }
 
     searchQuery(queryString: string) {
+        //console.log(queryString);
         let pattern = new RegExp("^" + queryString.toLocaleLowerCase());
-        console.log(`Pattern: ${pattern.source}`);
+        //console.log(`Pattern: ${pattern.source}`);
         this.filteredIngredients = this.doIndexingBasedOnQueryString(pattern);
         this.filteredIngredientsChanged.emit(this.filteredIngredients);
     }
