@@ -13,15 +13,18 @@ export class ShoppingListService {
     }
 
     addIngredientsInShoppingList(ingredient: Ingredient) {
-        // Logic not to add duplicate items in shopping list array.
-        for(let ing of this.ingredients) {
-            if(ing.name === ingredient.name) {
-                alert("Item is already in shopping list. Please add different item in shopping list or remove the existing item first then add this item.");
-                return;
+        // Logic not to add null object into the array
+        if(ingredient) {
+            // Logic not to add duplicate items in shopping list array.
+            for(let ing of this.ingredients) {
+                if(ing.name === ingredient.name) {
+                    alert("Item is already in shopping list. Please add different item in shopping list or remove the existing item first then add this item.");
+                    return;
+                }
             }
+            this.ingredients.push(ingredient);
+            this.ingredientsChanged.emit(this.ingredients.slice());
         }
-        this.ingredients.push(ingredient);
-        this.ingredientsChanged.emit(this.ingredients.slice());
     }
 
     clearShoppingList() {

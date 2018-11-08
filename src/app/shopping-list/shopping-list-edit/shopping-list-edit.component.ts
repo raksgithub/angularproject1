@@ -19,7 +19,11 @@ export class ShoppingListEditComponent implements OnInit {
   }
   addInShoppingList() {
     //this.onAddingIngredients.emit({name: this.nameInputRef.nativeElement.value, quantity: parseInt(this.qtyInputRef.nativeElement.value)});
-    this.shoppingListService.addIngredientsInShoppingList({name: this.nameInputRef.nativeElement.value, quantity: parseInt(this.qtyInputRef.nativeElement.value)});
+    const name = this.nameInputRef.nativeElement.value;
+    const qty = this.qtyInputRef.nativeElement.value;
+    if(name && !isNaN(parseInt(qty))) {
+      this.shoppingListService.addIngredientsInShoppingList({name: this.nameInputRef.nativeElement.value, quantity: parseInt(this.qtyInputRef.nativeElement.value)});
+    }
   }
 
   clearShoppingList() {
