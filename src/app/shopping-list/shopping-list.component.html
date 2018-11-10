@@ -7,7 +7,7 @@
         <strong>Shopping List:</strong>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="ingredients.length !== 0; else listEmpty">
       <div class="col-6">
         <ul class="list-group" *ngIf="!searchingStarted; else search">
           <a class='list-group-item' *ngFor='let ingredient of ingredients; let id = index;'
@@ -27,6 +27,9 @@
         </ul>
       </div>
     </div>
+    <ng-template #listEmpty>
+      <p>List is Empty currently. Please add some items into it.</p>
+    </ng-template>
     <ng-template #search>
       <ul class="list-group">
         <a class='list-group-item'  
