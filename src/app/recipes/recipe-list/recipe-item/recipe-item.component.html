@@ -1,5 +1,5 @@
-<div class="col-md-4">
-  <a href="#" class="list-group-item" (click)="onClickRecipe()" clearfix>
+<div class="row no-gutters">
+  <a [routerLink] = "[id]" routerLinkActive="active" class="list-group-item" clearfix style="cursor: pointer;">
     <div class="left">
       <h4 class="list-group item-heading">{{recipe.name}}</h4>
       <p class="list-group-item-text">{{recipe.desc}}</p>
