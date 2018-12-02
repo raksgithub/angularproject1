@@ -15,26 +15,9 @@
         <div class="col-12">
           <button class="btn btn-success" type='submit' [title]="editMode ? 'Update' : 'Add Item'" [disabled]="f.invalid">{{ editMode ? 'Update' : 'Add Item'}}</button>&nbsp;
           <button class="btn btn-primary" type='button' title='Clear List' (click)="clearShoppingList()">Clear List</button>&nbsp;
-          <button class="btn btn-secondary" type='button' title='Search Item' (click)="toggleSearch()">Search Item</button>
+          <button class="btn btn-secondary" type='button' title='Search Item' (click)="toSearchItems()">Search Item</button>
         </div>
       </div>
     </form>
   </div>
-  <ng-template #search>
-    <div class="col-12">
-      <form>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <label for="search"><strong>Search Item: </strong></label>
-            <input type="text" id='search' class='form-control' #searchInput (keyup)="indexItem(searchInput.value)">
-          </div>  
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <button class="btn btn-info" (click)="toggleSearch()">Back&lt;&lt;</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </ng-template>
 </div>

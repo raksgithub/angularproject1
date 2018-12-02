@@ -27,18 +27,5 @@
         </ul>
       </div>
     </div>
-    <ng-template #listEmpty>
-      <p>List is empty currently. Please add some ingredients into it.</p>
-    </ng-template>
-    <ng-template #search>
-      <ul class="list-group">
-        <a class='list-group-item'  
-        *ngFor='let ingredient of filteredIngredients; let id = index;'
-        [ngClass]="{odd: ingredient.quantity % 2 !== 0, even: ingredient.quantity % 2 === 0}"
-        [ngStyle]="{color: ingredient.quantity % 2 === 0 ? 'white' : 'red'}">
-          {{ ingredient.name }} ({{ ingredient.quantity }})
-        </a>
-      </ul>
-    </ng-template>
   </div>
 </div>

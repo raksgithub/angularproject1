@@ -4,6 +4,7 @@ import { SearchService } from '../search.service';
 import { NgForm } from '@angular/forms';
 import { Ingredient } from 'src/app/header/shared/ingredients.model';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -19,7 +20,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   editingIngredient: Ingredient;
   ingredientEditingSubscription: Subscription;
   @Output('onToggle') onToggleSearch = new EventEmitter<boolean>();
-  constructor(private shoppingListService: ShoppingListService, private searchService: SearchService) { }
+  constructor(private shoppingListService: ShoppingListService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
     this.ingredientEditingSubscription = this.shoppingListService.ingredientEditing.subscribe(
@@ -51,15 +52,8 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     this.shoppingListService.clearShoppingList();
   }
 
-  toggleSearch() {
-    this.searchAllowed = !this.searchAllowed;
-    this.onToggleSearch.emit(this.searchAllowed); 
-  }
-
-  indexItem(queryString: string) {
-    if(this.shoppingListService.getIngredients().length !== 0) {
-      this.searchService.searchQuery(queryString);
-    }
+  toSearchItems() {
+    this.router.navigate(['search-items']);
   }
 
   ngOnDestroy() {

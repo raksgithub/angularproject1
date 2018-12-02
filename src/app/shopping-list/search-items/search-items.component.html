@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-12">
+    <div class="form-group">
+      <label>
+        <strong>Search:</strong>
+        <input type="text" class="form-control" [(ngModel)]="searchCriteria">
+      </label>
+    </div>
+    <button class="btn btn-outline-info" (click)="onClickBack()">Back&lt;&lt;</button>
+    <hr>
+    <ul class="list-group" *ngFor="let ingredient of ingredients | filter:searchCriteria:'name'; let i=index;">
+      <a style="cursor: pointer;" *ngIf="ingredient.name || ingredient.quantity">
+        <li class="list-group-item">{{ ingredient.name }} ({{ ingredient.quantity }})</li>
+      </a>
+    </ul>
+  </div>
+</div>
