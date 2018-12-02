@@ -10,11 +10,11 @@
     <div class="row" *ngIf="ingredients.length !== 0; else listEmpty">
       <div class="col-6">
         <ul class="list-group" *ngIf="!searchingStarted; else search">
-          <a class='list-group-item' *ngFor='let ingredient of ingredients; let id = index;'
+          <a style="cursor: pointer;" class='list-group-item' *ngFor='let ingredient of ingredients; let id = index;'
               [ngClass]="{odd: ingredient.quantity % 2 !== 0, even: ingredient.quantity % 2 === 0}"
               [ngStyle]="{color: ingredient.quantity % 2 === 0 ? 'white' : 'red'}"> 
               <div class="row justify-content-between">
-                <div class="col-6">
+                <div class="col-6" (click)="onItemClick(id)">
                   {{ ingredient.name }} ({{ ingredient.quantity }})
                 </div>
                 <div class="col-6">

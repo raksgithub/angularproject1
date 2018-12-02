@@ -30,7 +30,7 @@ const routes: Routes = [
       }, 
       {
         // for /recipes/''/id/edit => /recipes/id/edit
-        path: ':id/edit',
+        path: 'edit/:id',
         component: RecipeEditComponent
       }] 
     }],
