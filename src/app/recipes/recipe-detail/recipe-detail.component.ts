@@ -13,6 +13,7 @@ import { Ingredient } from 'src/app/header/shared/ingredients.model';
 export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   recipe: Recipe;
+  id: number;
   recipeUpdateSubscription: Subscription;
   constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
 
@@ -20,12 +21,13 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.recipe = this.recipeService.getRecipeById(+params.get('id'));
+        this.id = this.recipeService.getRecipeId(this.recipe);
       })
     this.recipeUpdateSubscription = this.recipeService.recipesUpdated.subscribe(recipe => this.recipe = recipe);
   }
 
   onDeleteRecipe() {
-    this.recipeService.deleteRecipe(this.recipe.id);
+    this.recipeService.deleteRecipe(this.recipe);
   }
 
   sendIngredientsToSL() {

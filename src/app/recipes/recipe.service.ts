@@ -20,21 +20,24 @@ export class RecipeService {
     }
 
     getRecipeById(id: number): Recipe {
-        return this.recipes.find((recipe) => {
-            return recipe.id === id;
-        })
+        return this.recipes[id];
+    }
+
+    getRecipeId(recipe: Recipe) {
+        const id = this.recipes.indexOf(recipe);
+        return id;
     }
 
     addNewRecipe(name: string, desc: string, imgUrl: string, ingredients: Ingredient[]) {
         if(name && desc && imgUrl) {
-            this.recipes.push({ id: this.recipes.length + 1, name: name, desc: desc, imageURL: imgUrl, ingredients: ingredients });
+            this.recipes.push({ name: name, desc: desc, imageURL: imgUrl, ingredients: ingredients });
             this.recipesChanged.next(this.recipes.slice());
         }
     }
 
-    updateRecipe(id: number, newRecipe: Recipe) {
+    updateRecipe(oldRecipe: Recipe, newRecipe: Recipe) {
         for(let recipe of this.recipes) {
-            if(recipe.id === id) {
+            if(recipe === oldRecipe) {
                 recipe.name = newRecipe.name;
                 recipe.desc = newRecipe.desc;
                 recipe.imageURL = newRecipe.imageURL;
@@ -44,8 +47,10 @@ export class RecipeService {
         }
     }
 
-    deleteRecipe(id: number) {
-        this.recipes.splice(id - 1, 1);
+    deleteRecipe(recipe: Recipe) {
+        const index = this.recipes.indexOf(recipe);
+        this.recipes.splice(index, 1);
+        console.log(this.recipes.slice());
         this.recipesChanged.next(this.recipes.slice());
     }
 

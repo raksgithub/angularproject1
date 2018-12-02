@@ -34,7 +34,16 @@ export class ShoppingListService {
     }
 
     addIngredientsInShoppingList(ingredients: Ingredient[]) {
-        this.ingredients.push(...ingredients);
+        ingredients.forEach((ingredient) => {
+            const matchedIngredient = this.ingredients.find((ing: Ingredient) => {
+                return ing.name === ingredient.name;
+            });
+            if(matchedIngredient) {
+                return;
+            }
+            this.ingredients.push(ingredient);
+        });
+        // this.ingredients.push(...ingredients);
         this.ingredientsChanged.next(this.ingredients);
     }
 

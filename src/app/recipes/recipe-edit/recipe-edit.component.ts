@@ -50,8 +50,8 @@ export class RecipeEditComponent implements OnInit {
 
   onEditSave() {
     //console.log(`Recipe new name: ${this.name.value}`);
-    let newRecipe = new Recipe(this.editingRecipeId, this.name.value, this.desc.value, this.imageUrl.value, []);
-    this.recipeService.updateRecipe(this.editingRecipeId, newRecipe);
+    let newRecipe = new Recipe(this.name.value, this.desc.value, this.imageUrl.value, []);
+    this.recipeService.updateRecipe(this.editRecipe, newRecipe);
     this.router.navigate(['../../', this.editingRecipeId], {relativeTo: this.route});
   }
 }

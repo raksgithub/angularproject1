@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <img [src]="recipe.imageURL" alt="{{recipe.name}}" title='{{recipe.name}}' class="img-responsive" style='max-height: 100px;'>
+    <img [src]="recipe.imageURL" alt="{{recipe.name}}" title='{{recipe.name}}' class="img-fluid" style='max-height: 100px;'>
   </div>
   <div class="col-12">
     <h2>{{ recipe.name }}</h2>
@@ -12,7 +12,7 @@
       </button>
       <div class="dropdown-menu" routerLinkActive='active'>
         <a class="dropdown-item" [routerLink]="['../new']">Add Recipe</a>
-        <a class="dropdown-item" [routerLink]="['../edit', recipe.id]">Edit Recipe</a>
+        <a class="dropdown-item" [routerLink]="['../edit', id]">Edit Recipe</a>
         <a class="dropdown-item" routerLink="../" (click)="onDeleteRecipe()">Delete Recipe</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" [routerLink]="['../../shopping-list']" routerLinkActive='active'>To Shopping List</a>
@@ -25,9 +25,7 @@
   </div>
   <div class="col-12">
     <div *ngFor="let ingredient of recipe.ingredients; let i = index;" class="list-group" >
-      <div class="list-group-item">
-        <a href="#">{{ ingredient.name }} ({{ ingredient.quantity }})</a>
-      </div>
+      <a href="#" class="list-group-item" *ngIf="ingredient.name && ingredient.quantity">{{ ingredient.name }} ({{ ingredient.quantity }})</a>
     </div>
   </div>
 </div>
